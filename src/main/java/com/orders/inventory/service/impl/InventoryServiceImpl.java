@@ -1,12 +1,15 @@
 package com.orders.inventory.service.impl;
 
-import com.orders.common.exception.DuplicateInventoryException;
-import com.orders.common.exception.InventoryNotFoundException;
-import com.orders.inventory.dto.InventoryRequest;
-import com.orders.inventory.dto.InventoryResponse;
-import com.orders.inventory.model.Inventory;
+
+import com.orders.inventory.domain.dto.InventoryRequest;
+import com.orders.inventory.domain.dto.InventoryResponse;
+import com.orders.inventory.domain.model.Inventory;
+import com.orders.inventory.exception.DuplicateInventoryException;
+import com.orders.inventory.exception.InventoryNotFoundException;
 import com.orders.inventory.repository.InventoryRepository;
 import com.orders.inventory.service.InventoryService;
+
+import com.orders.inventory.exception.InsufficientStockException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -147,14 +150,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         if (availableQuantity < quantity) {
 
-            throw new IllegalStateException(
-                    "Insufficient available stock for product: "
-                            + productId
-                            + ". Available: "
-                            + availableQuantity
-                            + ", Requested: "
-                            + quantity
-            );
+            throw new InsufficientStockException(productId , availableQuantity,quantity);
         }
 
         int newReservedQuantity =

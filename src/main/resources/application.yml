@@ -1,10 +1,51 @@
-outbox:
-  scheduler:
-    delay: 5000
+spring:
+  application:
+    name: inventory-service   # for Order Service 
+
+  kafka:
+    bootstrap-servers: localhost:29092
+
+    topics:
+      order-created: order.created
+      payment-completed: payment.completed
+      payment-failed: payment.failed
+      inventory-reserved : inventory.reserved
+      inventory-reservation-failed: inventory.reservation.failed
+
+    producer:
+      acks: all
+      retries: 2147483647
+      enable-idempotence: true
+      compression-type: zstd
+      linger-ms: 20
+      batch-size: 65536
+      max-in-flight-requests-per-connection: 5
+      delivery-timeout-ms: 120000
+      request-timeout-ms: 30000
+      #transaction-id-prefix: attendance-
+
+    consumer:
+      group-id: inventory-service
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      isolation-level: read_committed
+      max-poll-records: 100
+
+    
+    properties:
+      spring.json.trusted.packages: com.orders.payment.common.events.*
+      spring.json.use.type.headers: false
 
 
-kafka:
-  server : localhost:9092
 
-  topics:
-    order-created : 
+inventory:
+  outbox:
+    max-retries: 10
+    batch-siz : 100
+    batch-size: 100
+    initial-retry-delay-seconds: 5
+    max-retry-delay-seconds: 300
+    processing-timeout-seconds: 120
+    
+    scheduler:
+      delay: 5000

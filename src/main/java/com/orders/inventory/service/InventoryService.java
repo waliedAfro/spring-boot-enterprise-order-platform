@@ -1,9 +1,11 @@
 package com.orders.inventory.service;
 
-import com.orders.inventory.dto.InventoryRequest;
-import com.orders.inventory.dto.InventoryResponse;
+
 
 import java.util.UUID;
+
+import com.orders.inventory.domain.dto.InventoryRequest;
+import com.orders.inventory.domain.dto.InventoryResponse;
 
 public interface InventoryService {
 

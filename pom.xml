@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.order</groupId>
-	<artifactId>enterprise-order-platform</artifactId>
+	<artifactId>order-inventory-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
@@ -84,6 +84,47 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Testing Dependency -->
+
+<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-testcontainers</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>junit-jupiter</artifactId>
+		<version>1.21.4</version>
+        <scope>test</scope>
+    </dependency>
+
+	<dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>postgresql</artifactId>
+		<version>1.21.4</version>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers-kafka</artifactId>
+        <scope>test</scope>
+    </dependency>
+	<!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-data-jpa-test -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-data-jpa-test</artifactId>
+    <version>4.2.0-M2</version>
+    <scope>test</scope>
+</dependency>
 	</dependencies>
 
 	<build>
